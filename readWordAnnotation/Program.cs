@@ -35,11 +35,34 @@ namespace readWordAnnotation
 
         }
 
+        public  void getAllFilePath()
+        {
+            DirectoryInfo theFolder = new DirectoryInfo(dirPath);
+            foreach (var dir in theFolder.GetDirectories())
+            {
+                string newPath = Path.Combine(dirPath, dir.ToString());
+                Console.WriteLine(newPath); // 获得当前学生文件夹
 
+                var files = Directory.GetFiles(newPath);
+                if (files.Length > 1)
+                    Console.WriteLine(files.Length+" ============");
+                foreach (var c_file in files)
+                {
+                    //Console.WriteLine(c_file);
+                    filePath.Add(c_file);
+                }
+
+
+            }
+            Console.WriteLine(filePath.Count);
+        }
         static void Main(string[] args)
         {
+            Program f_you = new Program();
             Console.WriteLine("Hello World!");
-            test();
+            //test();
+            f_you.getAllFilePath();
+            Console.ReadLine();
         }
     }
 }
